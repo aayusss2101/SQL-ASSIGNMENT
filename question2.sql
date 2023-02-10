@@ -1,28 +1,28 @@
-create table salary (
-name varchar(20),
-jan int,
-feb int,
-march int
+CREATE TABLE salary (
+name VARCHAR(20),
+jan INT,
+feb INT,
+march INT
 );
 
-insert into salary values 
+INSERT INTO salary VALUES 
 ("X",5200,9093,3832), 
 ("Y",9023,8942,4000), 
 ("Z", 9834,8197,9903), 
 ("W", 3244,4321,0293);
 
-select * from salary;
+SELECT * FROM salary;
 
-select name, 
-case 
-when jan>feb and jan>march then jan 
-when feb>march then feb 
-else march 
-end as "Value", 
-case 
-when jan>feb and jan>march then "Jan" 
-when feb>march then "Feb" 
-else "Mar" 
-end as "Month" 
-from salary;
+SELECT name, 
+CASE
+WHEN jan>feb AND jan>march THEN jan 
+WHEN feb>march THEN feb 
+ELSE march 
+END AS "Value", 
+CASE
+WHEN jan>feb AND jan>march THEN "Jan" 
+WHEN feb>march THEN "Feb" 
+ELSE "Mar" 
+END AS "Month" 
+FROM salary;
 
