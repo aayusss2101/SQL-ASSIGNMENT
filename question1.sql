@@ -1,33 +1,34 @@
-create table employees(
-empid int not null primary key,
-name varchar(20),
-gender varchar(10),
-department varchar(20)
+CREATE TABLE employees(
+empid INT NOT NULL PRIMARY KEY,
+name VARCHAR(20),
+gender VARCHAR(10),
+department VARCHAR(20)
 );
 
-insert into employees values 
+INSERT INTO employees VALUES 
 (1,"X","Female","Finance"), 
 (2,"Y","Male","IT"), 
 (3,"Z","Male","HR"), 
 (4,"W","Female","IT");
 
-select * from employees;
+SELECT * FROM employees;
 
-select distinct department, (
-select sum(
-case 
-when gender="Male" then 1 
-else 0 
-end
+SELECT DISTINCT department, (
+SELECT SUM(
+CASE 
+WHEN gender="Male" THEN 1 
+ELSE 0 
+END
 )
 ) as "Num of Male", (
-select sum(
-case 
-when gender="Female" then 1 
-else 0 end
+SELECT SUM(
+CASE
+WHEN gender="Female" THEN 1 
+ELSE 0 
+END
 )
 ) as "Num of Female"
-from employees
-group by department 
-order by department;
+FROM employees
+GROUP BY department 
+ORDER BY department;
 
