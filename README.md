@@ -2,13 +2,15 @@
 
 ## Question 1
 
+I have used the ```CASE``` function to assign 1 to the particular gender in consideration and 0 to everything else. Later, I have used the ```SUM``` function over the output of case to find the count.
+
 **Create Table**
 ```
-create table employees(
-empid int not null primary key,
-name varchar(20),
-gender varchar(10),
-department varchar(20)
+CREATE TABLE employees(
+empid INT NOT NULL PRIMARY KEY,
+name VARCHAR(20),
+gender VARCHAR(10),
+department VARCHAR(20)
 );
 ```
 
@@ -18,13 +20,13 @@ department varchar(20)
 
 **Insert Values**
 ```
-insert into employees values 
+INSERT INTO employees VALUES 
 (1,"X","Female","Finance"), 
 (2,"Y","Male","IT"), 
 (3,"Z","Male","HR"), 
 (4,"W","Female","IT");
 
-select * from employees;
+SELECT * FROM employees;
 ```
 <p align=center>
 <img src="https://github.com/aayusss2101/SQL-ASSIGNMENT/blob/main/Screenshots/q1%20value.png" height="400px" width="400px">
@@ -32,23 +34,24 @@ select * from employees;
 
 **Solution**
 ```
-select distinct department, (
-select sum(
-case 
-when gender="Male" then 1 
-else 0 
-end
+SELECT DISTINCT department, (
+SELECT SUM(
+CASE 
+WHEN gender="Male" THEN 1 
+ELSE 0 
+END
 )
 ) as "Num of Male", (
-select sum(
-case 
-when gender="Female" then 1 
-else 0 end
+SELECT SUM(
+CASE
+WHEN gender="Female" THEN 1 
+ELSE 0 
+END
 )
 ) as "Num of Female"
-from employees
-group by department 
-order by department;
+FROM employees
+GROUP BY department 
+ORDER BY department;
 ```
 
 <p align=center>
@@ -57,14 +60,16 @@ order by department;
 
 ## Question 2
 
+I have used the ```CASE``` function to find the largest element in the row, and similarly I have used the ```CASE``` function to find the label of the maximum value.
+
 **Create Table**
 
 ```
-create table salary (
-name varchar(20),
-jan int,
-feb int,
-march int
+CREATE TABLE salary (
+name VARCHAR(20),
+jan INT,
+feb INT,
+march INT
 );
 ```
 
@@ -75,13 +80,13 @@ march int
 **Insert Values**
 
 ```
-insert into salary values 
+INSERT INTO salary VALUES 
 ("X",5200,9093,3832), 
 ("Y",9023,8942,4000), 
 ("Z", 9834,8197,9903), 
 ("W", 3244,4321,0293);
 
-select * from salary;
+SELECT * FROM salary;
 ```
 
 <p align=center>
@@ -91,18 +96,18 @@ select * from salary;
 **Solution**
 
 ```
-select name, 
-case 
-when jan>feb and jan>march then jan 
-when feb>march then feb 
-else march 
-end as "Value", 
-case 
-when jan>feb and jan>march then "Jan" 
-when feb>march then "Feb" 
-else "Mar" 
-end as "Month" 
-from salary;
+SELECT name, 
+CASE
+WHEN jan>feb AND jan>march THEN jan 
+WHEN feb>march THEN feb 
+ELSE march 
+END AS "Value", 
+CASE
+WHEN jan>feb AND jan>march THEN "Jan" 
+WHEN feb>march THEN "Feb" 
+ELSE "Mar" 
+END AS "Month" 
+FROM salary;
 ```
 
 <p align=center>
@@ -111,13 +116,15 @@ from salary;
 
 ## Question 3
 
+I have made use of the ```GROUP_CONCAT``` function to find coalesce the rows resulting from the ```GROUP BY``` clause. To find the rank, I have made use of the ```RANK()``` function.
+
 **Create Table**
 
 ```
-create table test (
-candidate_id int,
-marks int,
-primary key(candidate_id)
+CREATE TABLE test (
+candidate_id INT,
+marks INT,
+PRIMARY KEY(candidate_id)
 );
 ```
 
@@ -128,14 +135,14 @@ primary key(candidate_id)
 **Insert Values**
 
 ```
-insert into test values
+INSERT INTO test VALUES
 (1,98),
 (2,78),
 (3,87),
 (4,98),
 (5,78);
 
-select * from test;
+SELECT * FROM test;
 ```
 
 <p align=center>
@@ -145,12 +152,12 @@ select * from test;
 **Solution**
 
 ```
-select distinct marks "Marks", 
-rank() over (order by marks desc) as "Rank", 
-group_concat(candidate_id) as "Candidate_ID" 
-from test 
-group by marks 
-order by marks desc;
+SELECT DISTINCT marks "Marks", 
+RANK() OVER (ORDER BY marks DESC) AS "Rank", 
+GROUP_CONCAT(candidate_id) AS "Candidate_ID" 
+FROM test 
+GROUP BY marks 
+ORDER BY marks DESC;
 ```
 
 <p align=center>
@@ -159,12 +166,14 @@ order by marks desc;
 
 ## Question 4
 
+I have first used a subquery to find the least **candidate_id** for each unique email by the help of ```MIN``` function and ```GROUP BY``` clause. Later, using the result from the subquery, I display only the rows for which the candidate_id is present in the result. I have used the ```IN``` operator to check this.
+
 **Create Table**
 
 ```
-create table detail(
-candidate_id int not null primary key,
-email varchar(100)
+CREATE TABLE detail(
+candidate_id INT NOT NULL PRIMARY KEY,
+email VARCHAR(100)
 );
 ```
 
@@ -175,14 +184,14 @@ email varchar(100)
 **Insert Values**
 
 ```
-insert into detail values
+INSERT INTO detail VALUES
 (45, "abc@gmail.com"),
 (23, "def@yahoo.com"),
 (34, "abc@gmail.com"),
 (21, "bcf@gmail.com"),
 (94, "def@yahoo.com");
 
-select * from detail;
+SELECT * FROM detail;
 ```
 
 <p align=center>
@@ -192,11 +201,11 @@ select * from detail;
 **Solution**
 
 ```
-select * from detail 
-where candidate_id in ( 
-select min(candidate_id) from detail group by email 
+SELECT * FROM detail 
+WHERE candidate_id IN ( 
+SELECT MIN(candidate_id) FROM detail GROUP BY email 
 ) 
-order by candidate_id desc;
+ORDER BY candidate_id DESC;
 ```
 
 <p align=center>
