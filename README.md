@@ -219,4 +219,6 @@ SELECT c FROM  (
 SELECT MIN(candidate_id) c FROM detail GROUP BY email 
 ) a 
 );
+
+SELECT * FROM detail;
 ```
