@@ -76,7 +76,7 @@
 <br/>
 
 **Question 4**
-- He has created the table ***record*** with ***candidate_id*** as primary key and ***email*** as another attribute and inserted values into it.
+- He has created the table ***candidate_Info*** with ***candidate_id*** as primary key and ***email*** as another attribute and inserted values into it.
 - He has used the ```MIN()``` function to calculate the minimum ***candidate_id*** from ***detail***. He has given this column an alias name of ***Candidate_ID***.
 - For the second column, he has selected the ***email*** column.
 - He has used ```GROUP BY``` clause to group the output by the ***email*** column.
