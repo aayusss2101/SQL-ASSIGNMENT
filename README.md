@@ -166,7 +166,7 @@ ORDER BY marks DESC;
 
 ## Question 4
 
-I have first used a subquery to find the least **candidate_id** for each unique email by the help of ```MIN``` function and ```GROUP BY``` clause. Later, using the result from the subquery, I display only the rows for which the candidate_id is present in the result. I have used the ```IN``` operator to check this.
+I have first used a subquery to find the least **candidate_id** for each unique email by the help of ```MIN``` function and ```GROUP BY``` clause. Later, using the result from the subquery, I display only the rows for which the candidate_id is present in the result. I have used the ```IN``` operator to check this. To delete the duplicate the elements, I have used a subquery inside a subquery to find the duplicate rows in the ```DELETE``` statement. I have used the same logic as in the select query just using ```NOT IN``` instead of ```IN```.
 
 **Create Table**
 
@@ -211,3 +211,12 @@ ORDER BY candidate_id DESC;
 <p align=center>
 <img src="https://github.com/aayusss2101/SQL-ASSIGNMENT/blob/main/Screenshots/q4%20output.png" height="400px" width="500px">
 </p>
+
+```
+DELETE FROM detail 
+WHERE candidate_id NOT IN ( 
+SELECT c FROM  ( 
+SELECT MIN(candidate_id) c FROM detail GROUP BY email 
+) a 
+);
+```
