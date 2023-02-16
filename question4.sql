@@ -18,3 +18,9 @@ SELECT MIN(candidate_id) FROM detail GROUP BY email
 ) 
 ORDER BY candidate_id DESC;
 
+DELETE FROM detail 
+WHERE candidate_id NOT IN ( 
+SELECT c FROM  ( 
+SELECT MIN(candidate_id) c FROM detail GROUP BY email 
+) a 
+);
