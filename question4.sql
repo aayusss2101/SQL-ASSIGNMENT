@@ -12,12 +12,6 @@ INSERT INTO detail VALUES
 
 SELECT * FROM detail;
 
-SELECT * FROM detail 
-WHERE candidate_id IN ( 
-SELECT MIN(candidate_id) FROM detail GROUP BY email 
-) 
-ORDER BY candidate_id DESC;
-
 DELETE FROM detail 
 WHERE candidate_id NOT IN ( 
 SELECT c FROM  ( 
