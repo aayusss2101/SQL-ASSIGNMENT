@@ -201,18 +201,6 @@ SELECT * FROM detail;
 **Solution**
 
 ```
-SELECT * FROM detail 
-WHERE candidate_id IN ( 
-SELECT MIN(candidate_id) FROM detail GROUP BY email 
-) 
-ORDER BY candidate_id DESC;
-```
-
-<p align=center>
-<img src="https://github.com/aayusss2101/SQL-ASSIGNMENT/blob/main/Screenshots/q4%20output.png" height="400px" width="500px">
-</p>
-
-```
 DELETE FROM detail 
 WHERE candidate_id NOT IN ( 
 SELECT c FROM  ( 
