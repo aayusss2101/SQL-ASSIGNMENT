@@ -1,8 +1,8 @@
 CREATE TABLE employees(
-empid INT NOT NULL PRIMARY KEY,
-name VARCHAR(20),
-gender VARCHAR(10),
-department VARCHAR(20)
+  empid INT NOT NULL PRIMARY KEY,
+  name VARCHAR(20),
+  gender VARCHAR(10),
+  department VARCHAR(20)
 );
 
 INSERT INTO employees VALUES 
@@ -14,19 +14,19 @@ INSERT INTO employees VALUES
 SELECT * FROM employees;
 
 SELECT DISTINCT department, (
-SELECT SUM(
-CASE 
-WHEN gender="Male" THEN 1 
-ELSE 0 
-END
-)
+  SELECT SUM(
+    CASE 
+    WHEN gender="Male" THEN 1 
+    ELSE 0 
+    END
+  )
 ) as "Num of Male", (
-SELECT SUM(
-CASE
-WHEN gender="Female" THEN 1 
-ELSE 0 
-END
-)
+  SELECT SUM(
+    CASE
+    WHEN gender="Female" THEN 1 
+    ELSE 0 
+    END
+  )
 ) as "Num of Female"
 FROM employees
 GROUP BY department 
