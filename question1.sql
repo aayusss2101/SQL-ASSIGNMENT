@@ -16,15 +16,15 @@ SELECT * FROM employees;
 SELECT DISTINCT department, (
   SELECT SUM(
     CASE 
-    WHEN gender="Male" THEN 1 
-    ELSE 0 
+      WHEN gender="Male" THEN 1 
+      ELSE 0 
     END
   )
 ) as "Num of Male", (
   SELECT SUM(
     CASE
-    WHEN gender="Female" THEN 1 
-    ELSE 0 
+      WHEN gender="Female" THEN 1 
+      ELSE 0 
     END
   )
 ) as "Num of Female"
