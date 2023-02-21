@@ -1,6 +1,6 @@
 CREATE TABLE detail(
-candidate_id INT NOT NULL PRIMARY KEY,
-email VARCHAR(100)
+  candidate_id INT NOT NULL PRIMARY KEY,
+  email VARCHAR(100)
 );
 
 INSERT INTO detail VALUES
@@ -13,10 +13,10 @@ INSERT INTO detail VALUES
 SELECT * FROM detail;
 
 DELETE FROM detail 
-WHERE candidate_id NOT IN ( 
-SELECT c FROM  ( 
-SELECT MIN(candidate_id) c FROM detail GROUP BY email 
-) a 
-);
+  WHERE candidate_id NOT IN ( 
+    SELECT c FROM  ( 
+      SELECT MIN(candidate_id) c FROM detail GROUP BY email 
+    ) a 
+  );
 
 SELECT * FROM detail;
