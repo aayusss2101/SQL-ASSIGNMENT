@@ -1,7 +1,7 @@
 CREATE TABLE test (
-candidate_id INT,
-marks INT,
-PRIMARY KEY(candidate_id)
+  candidate_id INT,
+  marks INT,
+  PRIMARY KEY(candidate_id)
 );
 
 INSERT INTO test VALUES
@@ -19,4 +19,3 @@ GROUP_CONCAT(candidate_id) AS "Candidate_ID"
 FROM test 
 GROUP BY marks 
 ORDER BY marks DESC;
-
