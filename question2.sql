@@ -1,8 +1,8 @@
 CREATE TABLE salary (
-name VARCHAR(20),
-jan INT,
-feb INT,
-march INT
+  name VARCHAR(20),
+  jan INT,
+  feb INT,
+  march INT
 );
 
 INSERT INTO salary VALUES 
@@ -15,14 +15,14 @@ SELECT * FROM salary;
 
 SELECT name, 
 CASE
-WHEN jan>feb AND jan>march THEN jan 
-WHEN feb>march THEN feb 
-ELSE march 
+  WHEN jan>feb AND jan>march THEN jan 
+  WHEN feb>march THEN feb 
+  ELSE march 
 END AS "Value", 
 CASE
-WHEN jan>feb AND jan>march THEN "Jan" 
-WHEN feb>march THEN "Feb" 
-ELSE "Mar" 
+  WHEN jan>feb AND jan>march THEN "Jan" 
+  WHEN feb>march THEN "Feb" 
+  ELSE "Mar" 
 END AS "Month" 
 FROM salary;
 
